@@ -1,4 +1,8 @@
 version: 2.1
+
+orbs:
+  ruby: circleci/ruby@1.2.0
+
 jobs:
   node:
     working_directory: ~/demo-react-native
@@ -81,11 +85,11 @@ jobs:
       - restore_cache:
           key: pods-v1-{{ checksum "ios/Podfile.lock" }}-{{ arch }}
 
-      - run: 
+      - run:
           command: pod install
           working_directory: ios
 
-      - run: 
+      - run:
           command: bundle install
           working_directory: ios
 
@@ -106,14 +110,14 @@ jobs:
 
       - store_artifacts:
           path: output
-          
+
       - store_test_results:
           path: output/scan
-            
+
   android-build-and-test:
     working_directory: ~/demo-react-native/android
     docker:
-      - image: circleci/android:api-29-node
+      - image: reactnativecommunity/react-native-android
     steps:
       - checkout:
           path: ~/demo-react-native
@@ -154,4 +158,3 @@ workflows:
       - macos-build-and-test:
           requires:
             - node
-            
