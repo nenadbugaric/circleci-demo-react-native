@@ -29,6 +29,7 @@ jobs:
           command: fastlane scan
           environment:
             SCAN_DEVICE: iPhone 8
+            SCAN_SCHEME: CircleCIDemoReactNative
           working_directory: ios
 
       - store_artifacts:
