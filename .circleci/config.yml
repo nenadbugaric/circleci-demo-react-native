@@ -26,7 +26,9 @@ jobs:
 
       - run:
           name: Fastlane
-          command: bundle exec fastlane $FASTLANE_LANE
+          command: fastlane scan
+          environment:
+            SCAN_DEVICE: iPhone 8
           working_directory: ios
 
       - store_artifacts:
